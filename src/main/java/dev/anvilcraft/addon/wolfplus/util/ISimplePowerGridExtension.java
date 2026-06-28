@@ -1,13 +1,10 @@
 package dev.anvilcraft.addon.wolfplus.util;
 
+import dev.anvilcraft.addon.wolfplus.util.geometry.DelaunayTriangulator;
 import dev.dubhe.anvilcraft.api.power.PowerComponentType;
 import dev.dubhe.anvilcraft.api.power.SimplePowerGrid;
 import dev.dubhe.anvilcraft.client.renderer.Line;
 import net.minecraft.world.phys.Vec3;
-import org.locationtech.jts.geom.Coordinate;
-import org.locationtech.jts.geom.Geometry;
-import org.locationtech.jts.geom.GeometryFactory;
-import org.locationtech.jts.triangulate.DelaunayTriangulationBuilder;
 
 import java.util.HashSet;
 import java.util.List;
@@ -48,39 +45,23 @@ public interface ISimplePowerGridExtension {
             return;
         }
         Map<Vec3, Integer> map = Map.ofEntries(shapes.<Map.Entry<Vec3, Integer>>toArray(Map.Entry[]::new));
-        List<Map.Entry<Coordinate, Vec3>> point = shapes.stream()
-            .map(it -> {
-                double offset = (it.getKey().y - 1024) / 2048;
-                double x = it.getKey().x + offset;
-                double z = it.getKey().z + offset;
-                return Map.entry(new Coordinate(x, z), it.getKey());
-            })
-            .toList();
-        Map<Coordinate, Vec3> map1 = Map.ofEntries(point.<Map.Entry<Coordinate, Vec3>>toArray(Map.Entry[]::new));
-        List<Coordinate> points = map1.keySet().stream().toList();
-        DelaunayTriangulationBuilder triangulator = new DelaunayTriangulationBuilder();
-        triangulator.setSites(points);
-        Geometry triangles = triangulator.getTriangles(new GeometryFactory());
+        List<Vec3> points = shapes.stream().map(Map.Entry::getKey).toList();
         Set<Line> lines = new HashSet<>();
-        for (int i = 0; i < triangles.getNumGeometries(); i++) {
-            Geometry triangle = triangles.getGeometryN(i);
-            Coordinate[] coordinates = triangle.getCoordinates();
-            if (coordinates.length <= 1) continue;
-            for (int j = 1; j < coordinates.length; j++) {
-                Coordinate p1 = coordinates[j - 1];
-                Coordinate p2 = coordinates[j];
-                Vec3 vec3 = map1.get(p1);
-                Vec3 vec4 = map1.get(p2);
-                double v = vec3.distanceTo(vec4);
-                int i1 = map.getOrDefault(vec3, 0);
-                int i2 = map.getOrDefault(vec4, 0);
-                if (!PowerTransmitterLinesUtil.isOverlap(vec3, i1, vec4, i2)) continue;
-                lines.add(new Line(
-                    vec3,
-                    vec4,
-                    (float) v
-                ));
-            }
+        for (DelaunayTriangulator.Edge edge : DelaunayTriangulator.triangulate(points.size(), index -> {
+            Vec3 vec3 = points.get(index);
+            double offset = (vec3.y - 1024) / 2048;
+            return new DelaunayTriangulator.Point(index, vec3.x + offset, vec3.z + offset);
+        })) {
+            Vec3 vec3 = points.get(edge.a());
+            Vec3 vec4 = points.get(edge.b());
+            int i1 = map.getOrDefault(vec3, 0);
+            int i2 = map.getOrDefault(vec4, 0);
+            if (!PowerTransmitterLinesUtil.isOverlap(vec3, i1, vec4, i2)) continue;
+            lines.add(new Line(
+                vec3,
+                vec4,
+                (float) vec3.distanceTo(vec4)
+            ));
         }
         this.delta$setPowerTransmitterLines(lines);
     }

@@ -28,3 +28,7 @@ idea {
 lombok {
     version = libs.versions.lombok.get()
 }
+
+test {
+    useJUnitPlatform()
+}
