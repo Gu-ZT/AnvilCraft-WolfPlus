@@ -4,13 +4,14 @@ neoForge = "26.1.2.76"
 lombokPlugin = "9.2.0"
 lombok = "1.18.44"
 modDevGradle = "2.0.140"
-jsr305 = "3.0.2"
-jei = "29.5.0.26"
+anvillib = "2.0.0+snapshot.472"
+anvilcraft = "1.6.0+snapshot.1912"
+jts = "1.20.0"
 
 [libraries]
-jsr305 = { group = "com.google.code.findbugs", name = "jsr305", version.ref = "jsr305" }
-jeiApi = { group = "mezz.jei", name = "jei-26.1.2-neoforge-api", version.ref = "jei" }
-jei = { group = "mezz.jei", name = "jei-26.1.2-neoforge", version.ref = "jei" }
+jts = { group = 'org.locationtech.jts', name = 'jts-core', version.ref = "jts" }
+anvillib = { group = "dev.anvilcraft.lib", name = "anvillib-neoforge-26.1", version.ref = "anvillib" }
+anvilcraft = { group = "dev.dubhe", name = "anvilcraft-neoforge-26.1.2", version.ref = "anvilcraft" }
 
 [plugins]
 modDevGradle = { id = "net.neoforged.moddev", version.ref = "modDevGradle" }

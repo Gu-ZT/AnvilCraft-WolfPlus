@@ -1,5 +1,5 @@
 dependencies {
-    compileOnly libs.jsr305
-    compileOnly libs.jeiApi
-    runtimeOnly libs.jei
+    api libs.jts
+    api libs.anvillib
+    api libs.anvilcraft
 }
