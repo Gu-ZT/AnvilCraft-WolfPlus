@@ -1,5 +1,6 @@
 package dev.dubhe.template;
 
+import net.minecraft.resources.Identifier;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
@@ -9,5 +10,9 @@ public class NeoforgeTemplateMod {
     public static final String MOD_ID = "neoforge_template_mod";
 
     public NeoforgeTemplateMod(IEventBus modEventBus, ModContainer modContainer) {
+    }
+
+    public static Identifier of(String path) {
+        return Identifier.fromNamespaceAndPath(NeoforgeTemplateMod.MOD_ID, path);
     }
 }
