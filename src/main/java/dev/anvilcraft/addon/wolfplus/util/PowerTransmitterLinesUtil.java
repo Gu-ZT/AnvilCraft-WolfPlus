@@ -13,8 +13,10 @@ import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
+@SuppressWarnings("DataFlowIssue")
 public class PowerTransmitterLinesUtil {
     public static void submitTransmitterLine(PoseStack poseStack, SubmitNodeCollector nodeCollector, Vec3 camera) {
         String level = Minecraft.getInstance().level.dimension().identifier().toString();
@@ -37,26 +39,30 @@ public class PowerTransmitterLinesUtil {
 
     public static void submitEnhancedTransmitterLine(Vec3 camera) {
         String level = Minecraft.getInstance().level.dimension().identifier().toString();
-        Collection<SimplePowerGrid> gridToRender = PowerGridSupport.getGridMap().values();
+        Collection<SimplePowerGrid> gridToRender = new ArrayList<>();
+        for (SimplePowerGrid simplePowerGrid : PowerGridSupport.getGridMap().values()) {
+            if (!simplePowerGrid.shouldRender(camera)) continue;
+            if (!simplePowerGrid.getLevel().equals(level)) continue;
+            if (PowerTransmitterLinesUtil.getPowerTransmitterLines(simplePowerGrid).isEmpty()) continue;
+            gridToRender.add(simplePowerGrid);
+        }
         if (gridToRender.isEmpty()) return;
-        ALRPostEffects.getBloomPostEffect().drawBloomed((
-            (nodeCollector, poseStack1) -> {
-                nodeCollector.submitCustomGeometry(
-                    poseStack1, ModRenderTypes.LINE_BLOOM, (pose, buffer) -> {
-                        for (SimplePowerGrid grid : gridToRender) {
-                            if (!grid.shouldRender(camera)) continue;
-                            if (!grid.getLevel().equals(level)) continue;
-                            PowerTransmitterLinesUtil.getPowerTransmitterLines(grid).forEach(it -> it.render(
-                                pose,
-                                buffer,
-                                camera,
-                                Constant.TRANSMITTER_LINE_COLOR
-                            ));
-                        }
+        ALRPostEffects.getBloomPostEffect().drawBloomed(
+            (nodeCollector, poseStack1) -> nodeCollector.submitCustomGeometry(
+                poseStack1,
+                ModRenderTypes.LINE_BLOOM,
+                (pose, buffer) -> {
+                    for (SimplePowerGrid grid : gridToRender) {
+                        PowerTransmitterLinesUtil.getPowerTransmitterLines(grid).forEach(it -> it.render(
+                            pose,
+                            buffer,
+                            camera,
+                            Constant.TRANSMITTER_LINE_COLOR
+                        ));
                     }
-                );
-            }
-        ));
+                }
+            )
+        );
     }
 
     public static Collection<Line> getPowerTransmitterLines(SimplePowerGrid grid) {
@@ -67,14 +73,14 @@ public class PowerTransmitterLinesUtil {
     }
 
     public static boolean isOverlap(Vec3 a, int rangeA, Vec3 b, int rangeB) {
-        AABB aAABB = new AABB(
+        AABB a1 = new AABB(
             a.x - rangeA - 0.5, a.y - rangeA - 0.5, a.z - rangeA - 0.5,
             a.x + rangeA + 0.5, a.y + rangeA + 0.5, a.z + rangeA + 0.5
         );
-        AABB bAABB = new AABB(
+        AABB a2 = new AABB(
             b.x - rangeB - 0.5, b.y - rangeB - 0.5, b.z - rangeB - 0.5,
             b.x + rangeB + 0.5, b.y + rangeB + 0.5, b.z + rangeB + 0.5
         );
-        return aAABB.intersects(bAABB);
+        return a1.intersects(a2);
     }
 }

@@ -5,7 +5,7 @@ lombokPlugin = "9.2.0"
 lombok = "1.18.44"
 modDevGradle = "2.0.140"
 anvillib = "2.0.0+snapshot.472"
-anvilcraft = "1.6.0+snapshot.1912"
+anvilcraft = "1.6.0+snapshot.1938"
 
 [libraries]
 anvillib = { group = "dev.anvilcraft.lib", name = "anvillib-neoforge-26.1", version.ref = "anvillib" }
