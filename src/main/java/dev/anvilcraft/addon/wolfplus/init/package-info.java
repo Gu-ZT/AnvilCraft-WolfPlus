@@ -1,4 +1,4 @@
 @NullMarked
-package dev.anvilcraft.addon.wolfplus.mixin;
+package dev.anvilcraft.addon.wolfplus.init;
 
 import org.jspecify.annotations.NullMarked;

@@ -3,7 +3,7 @@
   "minVersion": "0.8",
   "package": "dev.anvilcraft.addon.wolfplus.mixin",
   "compatibilityLevel": "JAVA_25",
-  "mixins": ["PowerGridSupportMixin", "SimplePowerGridMixin"],
+  "mixins": [],
   "client": [
   ],
   "injectors": {

@@ -1,0 +1,25 @@
+{
+	"format_version": "1.21.11",
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
+	"textures": {
+		"0": "anvilcraft:block/frost_metal_block_outline",
+		"1": "anvilcraft:block/capacitor_bank_top",
+		"particle": "anvilcraft:block/frost_metal_block_outline"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 16],
+			"to": [16, 1, 32],
+			"rotation": {"x": -90, "y": 0, "z": 0, "origin": [0, 0, 16]},
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1], "texture": "#1"},
+				"east": {"uv": [0, 0, 16, 1], "texture": "#1"},
+				"south": {"uv": [0, 0, 16, 1], "texture": "#1"},
+				"west": {"uv": [0, 0, 16, 1], "texture": "#1"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#1"}
+			}
+		}
+	]
+}

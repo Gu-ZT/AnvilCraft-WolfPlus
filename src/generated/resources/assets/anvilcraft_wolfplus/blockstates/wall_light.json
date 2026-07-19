@@ -1,0 +1,96 @@
+{
+  "variants": {
+    "facing=down,overload=false,switch=off": {
+      "model": "anvilcraft_wolfplus:block/wall_light_off",
+      "x": 90
+    },
+    "facing=down,overload=false,switch=on": {
+      "model": "anvilcraft_wolfplus:block/wall_light",
+      "x": 90
+    },
+    "facing=down,overload=true,switch=off": {
+      "model": "anvilcraft_wolfplus:block/wall_light_off",
+      "x": 90
+    },
+    "facing=down,overload=true,switch=on": {
+      "model": "anvilcraft_wolfplus:block/wall_light_overload",
+      "x": 90
+    },
+    "facing=east,overload=false,switch=off": {
+      "model": "anvilcraft_wolfplus:block/wall_light_off",
+      "y": 90
+    },
+    "facing=east,overload=false,switch=on": {
+      "model": "anvilcraft_wolfplus:block/wall_light",
+      "y": 90
+    },
+    "facing=east,overload=true,switch=off": {
+      "model": "anvilcraft_wolfplus:block/wall_light_off",
+      "y": 90
+    },
+    "facing=east,overload=true,switch=on": {
+      "model": "anvilcraft_wolfplus:block/wall_light_overload",
+      "y": 90
+    },
+    "facing=north,overload=false,switch=off": {
+      "model": "anvilcraft_wolfplus:block/wall_light_off"
+    },
+    "facing=north,overload=false,switch=on": {
+      "model": "anvilcraft_wolfplus:block/wall_light"
+    },
+    "facing=north,overload=true,switch=off": {
+      "model": "anvilcraft_wolfplus:block/wall_light_off"
+    },
+    "facing=north,overload=true,switch=on": {
+      "model": "anvilcraft_wolfplus:block/wall_light_overload"
+    },
+    "facing=south,overload=false,switch=off": {
+      "model": "anvilcraft_wolfplus:block/wall_light_off",
+      "y": 180
+    },
+    "facing=south,overload=false,switch=on": {
+      "model": "anvilcraft_wolfplus:block/wall_light",
+      "y": 180
+    },
+    "facing=south,overload=true,switch=off": {
+      "model": "anvilcraft_wolfplus:block/wall_light_off",
+      "y": 180
+    },
+    "facing=south,overload=true,switch=on": {
+      "model": "anvilcraft_wolfplus:block/wall_light_overload",
+      "y": 180
+    },
+    "facing=up,overload=false,switch=off": {
+      "model": "anvilcraft_wolfplus:block/wall_light_off",
+      "x": 270
+    },
+    "facing=up,overload=false,switch=on": {
+      "model": "anvilcraft_wolfplus:block/wall_light",
+      "x": 270
+    },
+    "facing=up,overload=true,switch=off": {
+      "model": "anvilcraft_wolfplus:block/wall_light_off",
+      "x": 270
+    },
+    "facing=up,overload=true,switch=on": {
+      "model": "anvilcraft_wolfplus:block/wall_light_overload",
+      "x": 270
+    },
+    "facing=west,overload=false,switch=off": {
+      "model": "anvilcraft_wolfplus:block/wall_light_off",
+      "y": 270
+    },
+    "facing=west,overload=false,switch=on": {
+      "model": "anvilcraft_wolfplus:block/wall_light",
+      "y": 270
+    },
+    "facing=west,overload=true,switch=off": {
+      "model": "anvilcraft_wolfplus:block/wall_light_off",
+      "y": 270
+    },
+    "facing=west,overload=true,switch=on": {
+      "model": "anvilcraft_wolfplus:block/wall_light_overload",
+      "y": 270
+    }
+  }
+}
