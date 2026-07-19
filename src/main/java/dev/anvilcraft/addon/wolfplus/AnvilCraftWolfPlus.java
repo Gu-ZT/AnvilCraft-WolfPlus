@@ -2,6 +2,7 @@ package dev.anvilcraft.addon.wolfplus;
 
 import dev.anvilcraft.addon.wolfplus.init.AddonBlockEntities;
 import dev.anvilcraft.addon.wolfplus.init.AddonBlocks;
+import dev.anvilcraft.addon.wolfplus.init.AddonCreativeModeTabs;
 import dev.anvilcraft.lib.v2.registrum.Registrum;
 import net.minecraft.resources.Identifier;
 import net.neoforged.bus.api.IEventBus;
@@ -16,6 +17,7 @@ public class AnvilCraftWolfPlus {
     public AnvilCraftWolfPlus(IEventBus modEventBus, ModContainer modContainer) {
         AddonBlocks.register();
         AddonBlockEntities.register();
+        AddonCreativeModeTabs.register();
     }
 
     public static Identifier of(String path) {

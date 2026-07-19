@@ -21,6 +21,10 @@ import net.minecraft.world.level.material.MapColor;
 import static dev.anvilcraft.addon.wolfplus.AnvilCraftWolfPlus.REGISTRUM;
 
 public class AddonBlocks {
+    static {
+        REGISTRUM.defaultCreativeTab(AddonCreativeModeTabs.MAIN.getKey());
+    }
+
     public static final BlockEntry<WallLightBlock> WALL_LIGHT = REGISTRUM.block("wall_light", WallLightBlock::new)
         .properties(properties -> properties.mapColor(MapColor.COLOR_LIGHT_GRAY)
             .lightLevel(WallLightBlock::lightLevel)

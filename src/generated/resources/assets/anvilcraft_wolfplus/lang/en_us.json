@@ -1,4 +1,5 @@
 {
   "block.anvilcraft_wolfplus.wall_light": "Wall Light",
-  "item.anvilcraft_wolfplus.wall_light": "Wall Light"
+  "item.anvilcraft_wolfplus.wall_light": "Wall Light",
+  "itemGroup.anvilcraft_wolfplus.main": "AnvilCraft: Wolf+"
 }
